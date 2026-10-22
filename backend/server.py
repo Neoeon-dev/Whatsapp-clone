@@ -140,8 +140,8 @@ async def router(websocket):
 
 async def main():
     # Start the server on localhost, port 8765
-    async with websockets.serve(router, "localhost", 8765):
-        print("WebSocket server started on ws://localhost:8765")
+    async with websockets.serve(router, "0.0.0.0", 8765):
+        print("WebSocket server started on ws://localhost:8765 and on port 8765")
         await asyncio.Future()  # Keeps the server running indefinitely
 
 if __name__ == "__main__":
