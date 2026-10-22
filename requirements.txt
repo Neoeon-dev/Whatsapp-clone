@@ -1,0 +1,40 @@
+annotated-doc==0.0.4
+annotated-types==0.7.0
+contourpy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_contourpy_1769155968/work
+cycler @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_cycler_1764466758/work
+dnspython==2.8.0
+email-validator==2.3.0
+fonttools @ file:///home/conda/feedstock_root/build_artifacts/fonttools_1773137067435/work
+google-auth==2.56.3
+google-genai==2.17.0
+greenlet==3.5.3
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_kiwisolver_1773067048/work
+matplotlib==3.10.8
+munkres==1.1.4
+numpy @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_numpy_1773839233/work/dist/numpy-2.4.3-cp314-cp314-linux_x86_64.whl#sha256=6eb2afeda12a350c8edfe8e03390cb0fef390c41968b4fa3fb97600ab233bf2c
+opencv-python==4.13.0
+opencv-python-headless==4.13.0
+packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1769093650/work
+pandas @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pandas_1771408984/work
+pillow @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pillow_1770794002/work
+psycopg==3.3.4
+pyasn1==0.6.4
+pyasn1_modules==0.4.2
+pydantic==2.12.5
+pydantic_core==2.41.5
+pygame==2.6.1
+pyparsing @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_pyparsing_1769003998/work
+PySide6==6.10.2
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_python-dateutil_1751104122/work
+python-dotenv==1.2.2
+scipy @ file:///home/conda/feedstock_root/build_artifacts/scipy-split_1771879147109/work/dist/scipy-1.17.1-cp314-cp314-linux_x86_64.whl#sha256=b1fa905adcc0e6c7d6ed50453bab0a519f76f705e575f8241a29a4065b6c841c
+shiboken6==6.10.2
+six @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_six_1753199211/work
+SQLAlchemy==2.0.51
+starlette==1.0.0
+tenacity==9.1.4
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1765836378069/work
+typing-inspection==0.4.2
+unicodedata2 @ file:///home/conda/feedstock_root/build_artifacts/unicodedata2_1770908959830/work
+uvicorn==0.42.0
+websockets==17.3
