@@ -45,9 +45,14 @@ click the number in input,
 
             # Read server response for signup
             signup_response = await websocket.recv()
-            print("Server response:", signup_response)
 
-            await window(websocket=websocket)
+            resp = json.loads(signup_response)
+
+            if resp.get("type") == "signup_success":
+                await window(websocket)
+            else:
+                print(resp.get("message"))
+
         elif cool == 2:
             print("username please, ")
             username = input("$ ")
@@ -63,9 +68,30 @@ click the number in input,
 
             # Read server response for login
             login_response = await websocket.recv()
-            print("Server response:", login_response)
 
-            await window(websocket=websocket)
+            resp = json.loads(login_response)
+
+            if resp.get("type") == "login_success":
+                await window(websocket=websocket)
+            else:
+                print(resp.get("message"))
+
+async def recieve_messages(websocket):
+    try:
+        async for message in websocket:
+            data = json.loads(message)
+
+            if data.get("type") == "chat_message":
+                print(
+                    f"\nNew message from {data.get('sender')}: "
+                    f"{data.get('text')}"
+                )
+                print("$ ", end="", flush=True)
+            else:
+                print(f"\nServer: {data}")
+                print("$ ", end="", flush=True)
+    except websockets.ConnectionClosed:
+        print("\nDisconnected from server.")
 
 async def window(websocket):
     print("""
@@ -74,43 +100,39 @@ ____________________________________________________________
                     Chat with someone
 ____________________________________________________________
 
-enter the number,
-
-1. Enter the username with whom you want to chat with
-2. recieve messages from someone
+Enter the username with whom you want to chat with
 
 """)
 
-    pulse = int(input("$ "))
+    friend = input("Friend username: ").strip()
 
-    friend = input("$ ")
+    receiver_task = asyncio.create_task(
+        recieve_messages(websocket)
+    )
 
-    second = False
+    try:
+        while True:
+            message = await asyncio.to_thread(input, "$ ")
 
-    while(1):
-        if pulse == 2 or second:
-            message_payload = await websocket.recv()
-            data = json.loads(message_payload)
-            print(f"New message from {data.get('sender')}: {data.get('text')}")
-        
-        print("""
-        input $123$ to exit,
-        """)
+            if message == "$123$":
+                break
 
-        message = input("$ ")
+            payload = {
+                "type": "chat_message",
+                "receiver": friend,
+                "text": message
+            }
 
-        if message == "$123$":
-            break
+            await websocket.send(json.dumps(payload))
+    except websockets.ConnectionClosed:
+        print("Connection closed.")
 
-        message_payload = {
-            "type" : "chat_message",
-            "receiver" : friend,
-            "text" : message
-        }
-
-        await websocket.send(json.dumps(message_payload))
-
-        second = True
+    finally:
+        receiver_task.cancel()
+        await asyncio.gather(
+            receiver_task,
+            return_exceptions=True
+        )
 
 
 if __name__ == "__main__":
