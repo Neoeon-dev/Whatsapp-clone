@@ -4,6 +4,19 @@ import websockets
 from database.database import database, User
 from model.model import ErrorCode
 from dataclasses import asdict
+import random
+
+
+def encrypt_password(password):
+    # Simple encryption by reversing the string and adding a random number
+    random_number = random.randint(1000, 9999)
+    encrypted = password[::-1] + str(random_number)
+    return encrypted
+
+def decrypt_password(encrypted_password):
+    # Simple decryption by removing the last 4 characters and reversing the string
+    decrypted = encrypted_password[:-4][::-1]
+    return decrypted
 
 db = database()
 
@@ -87,7 +100,7 @@ async def handle_chat_message(websocket, data):
         return
 
     user = connected_clients[websocket]
-    text = data.get("text", "")
+    text = encrypt_password(data.get("text", ""))
     username = data.get("receiver", "")
     print(f"Chat from {user}: {text}")
     

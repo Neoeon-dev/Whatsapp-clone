@@ -1,11 +1,12 @@
 import asyncio
 import websockets
+from backend.server import decrypt_password
 from database.database import database, User
 from model.model import ErrorCode
 import json
 
 async def client():
-    uri = "ws://192.168.0.102:8765"
+    uri = "wss://192.168.0.102:8765"
     async with websockets.connect(uri) as websocket:
 
         print("""
@@ -84,7 +85,7 @@ async def recieve_messages(websocket):
             if data.get("type") == "chat_message":
                 print(
                     f"\nNew message from {data.get('sender')}: "
-                    f"{data.get('text')}"
+                    f"{decrypt_password(data.get('text'))}"
                 )
                 print("$ ", end="", flush=True)
             else:
