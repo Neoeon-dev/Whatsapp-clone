@@ -1,12 +1,12 @@
 import asyncio
 import websockets
-from backend.server import decrypt_password
+from server import decrypt_password
 from database.database import database, User
 from model.model import ErrorCode
 import json
 
 async def client():
-    uri = "wss://192.168.0.102:8765"
+    uri = "ws://192.168.0.102:8765"
     async with websockets.connect(uri) as websocket:
 
         print("""
