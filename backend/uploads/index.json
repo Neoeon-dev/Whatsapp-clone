@@ -7,5 +7,14 @@
     "content_type": "text/x-python",
     "size": 9419,
     "path": "uploads/e8fa88d1-a6a5-4bc0-9258-70f9893bc04b"
+  },
+  "bc008903-0a7b-484f-a8c1-b62f0791fc60": {
+    "transfer_id": "bc008903-0a7b-484f-a8c1-b62f0791fc60",
+    "sender": "navaneeth",
+    "receiver": "neo",
+    "filename": "test.txt",
+    "content_type": "text/plain",
+    "size": 6,
+    "path": "uploads/bc008903-0a7b-484f-a8c1-b62f0791fc60"
   }
 }

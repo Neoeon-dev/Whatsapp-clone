@@ -329,7 +329,9 @@ Anything else is sent as a text message.
 
             elif message.startswith("/send "):
 
-                filepath = message[len("/send "):].strip().strip('"')
+                filepath = Path(
+                    message[len("/send "):].strip().strip('"')
+                ).expanduser().resolve()
 
                 if os.path.isfile(filepath):
                     await send_file(
